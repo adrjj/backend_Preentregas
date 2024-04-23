@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "title": "Nuevo producto",
+    "description": "Descripción del nuevo producto",
+    "price": 99.99,
+    "thumbnail": "https://ejemplo.com/imagen.jpg",
+    "code": "ABC123",
+    "stock": 10,
+    "status": true,
+    "category": "Electrónica"
+  },
+  {
+    "id": 2,
+    "title": "Pend Drive",
+    "description": "Descripción del nuevo producto",
+    "price": 16000,
+    "thumbnail": "https://ejemplo.com/imagen.jpg",
+    "code": "ABC125",
+    "stock": 5,
+    "status": true,
+    "category": "Electrónica"
+  },
+  {
+    "id": 3,
+    "title": "Disco SD",
+    "description": "Descripción del nuevo producto",
+    "price": 46000,
+    "thumbnail": "https://ejemplo.com/imagen.jpg",
+    "code": "ABC126",
+    "stock": 13,
+    "status": true,
+    "category": "Electrónica"
+  }
+]
