@@ -10,5 +10,5 @@ Con el objetivo de avanazar con los primeros pasos para la funcionalidad de un E
    -cart.js: para manejar la logica de los endpoints get/post coloque la logica dentreo del mismo endponit lo que redujo probando otra forma de hacerlo.
   
   -app.js: une las rutas de los endpoint
-![Texto Alternativo](imagenes/busqueda_por_id_de_carrito.png)
+![Texto Alternativo](./imagenes/busqueda_por_id_de_carrito.png)
   
