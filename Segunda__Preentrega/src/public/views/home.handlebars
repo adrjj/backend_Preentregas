@@ -1,0 +1,70 @@
+<h1>Lista de Productos</h1>
+  
+<div class="contListhome">
+<ul class="list" id="productList">
+  <!-- Los productos se agregarán dinámicamente aquí -->
+</ul>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+// Función para agregar un producto a la lista de productos
+function addProductToList(productos) {
+    console.log("esto recibe de", productos);
+    const productList = document.getElementById('productList');
+        // Limpiar la lista antes de agregar nuevos elementos
+    productList.innerHTML = '';
+    if (Array.isArray(productos)) {
+        productos.forEach(producto => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `ID: ${producto._id} -- Nombre: ${producto.title}`;
+            productList.appendChild(listItem);
+        });
+    } else {
+        const listItem = document.createElement('li');
+        listItem.textContent = `ID: ${productos._id} -- Nombre: ${productos.title}`;
+        productList.appendChild(listItem);
+    }
+}
+
+
+
+
+
+    // Función para cargar la lista de productos cuando la página se carga inicialmente
+    function loadInitialProductList() {
+        fetch('/api/products') // Hacer una solicitud HTTP GET al servidor para obtener los productos
+            .then(response => response.json())
+            .then(productos => {
+                productos.forEach(product => {
+                    addProductToList(productos);
+                });
+            })
+            .catch(error => {
+                console.error('Error al obtener los productos:', error);
+            });
+    }
+
+    // Escuchar el evento 'productAdded' y actualizar la lista de productos
+    socket.on('productos', (productos) => {
+      console.log("13// esto escuhca",productos)
+        addProductToList(productos);
+    });
+
+    // Escuchar el evento 'productDeleted' y actualizar la lista de productos
+    socket.on('idDeleted', (productId) => {
+        console.log("16//este es el id",productId)
+        const productList = document.getElementById('productList');
+        const items = productList.getElementsByTagName('li');
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].textContent.includes(productId)) {
+                productList.removeChild(items[i]);
+                break;
+            }
+        }
+    });
+
+    // Cargar la lista de productos cuando la página se carga inicialmente
+    document.addEventListener('DOMContentLoaded', loadInitialProductList);
+</script>

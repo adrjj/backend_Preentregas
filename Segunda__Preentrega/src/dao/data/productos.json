@@ -1,0 +1,68 @@
+[
+  {
+    "id": 10,
+    "title": "gato",
+    "description": "23",
+    "price": "232",
+    "thumbnail": "23",
+    "code": "23",
+    "stock": "23",
+    "status": true,
+    "category": "23"
+  },
+  {
+    "id": 11,
+    "title": "telefono",
+    "description": "12",
+    "price": "12",
+    "thumbnail": "12",
+    "code": "12",
+    "stock": "12",
+    "status": true,
+    "category": "12"
+  },
+  {
+    "id": 12,
+    "title": "celu",
+    "description": "89",
+    "price": "89",
+    "thumbnail": "89",
+    "code": "89",
+    "stock": "89",
+    "status": true,
+    "category": "89"
+  },
+  {
+    "id": 13,
+    "title": "palmera",
+    "description": "15",
+    "price": "15",
+    "thumbnail": "15",
+    "code": "15",
+    "stock": "15",
+    "status": true,
+    "category": "15"
+  },
+  {
+    "id": 14,
+    "title": "probando",
+    "description": "25",
+    "price": "25",
+    "thumbnail": "25",
+    "code": "25",
+    "stock": "25",
+    "status": true,
+    "category": "25"
+  },
+  {
+    "id": 15,
+    "title": "probando",
+    "description": "sadasd",
+    "price": "12",
+    "thumbnail": "dsadasd",
+    "code": "12",
+    "stock": "12",
+    "status": true,
+    "category": "asdasd"
+  }
+]
