@@ -34,32 +34,32 @@ Visualizacion de todos los productos cargados en la base de datos
 
 PRODUCTOS PAGINADOS.
 
-![Texto Alternativo](/imagenes/products.png)
+![Texto Alternativo](./imagenes/products.png)
 
 PRODUCTOS DENTRO DEL CARRITO CON
 URL:http://localhost:8080/cart/6654a391db46bd58f8df45e3
 
-![Texto Alternativo](/imagenes/porductos_carrito.png)
+![Texto Alternativo](./imagenes/porductos_carrito.png)
 
 FILTROS
 
-![Texto Alternativo](/imagenes/api_products_category.png)
+![Texto Alternativo](./imagenes/api_products_category.png)
 
-![Texto Alternativo](/imagenes/api_products_limit_page.png)
+![Texto Alternativo](./imagenes/api_products_limit_page.png)
 
-![Texto Alternativo](/imagenes/api_products_sort_mayor.png)
+![Texto Alternativo](./imagenes/api_products_sort_mayor.png)
 
-![Texto Alternativo](/imagenes/api_products_total.png)
+![Texto Alternativo](./imagenes/api_products_total.png)
 
 CART
 
-![Texto Alternativo](/imagenes/api_cart_borrar_producto.png)
+![Texto Alternativo](./imagenes/api_cart_borrar_producto.png)
 
-![Texto Alternativo](/imagenes/api_cart_guardar_agregar_cantidad.png)
+![Texto Alternativo](./imagenes/api_cart_guardar_agregar_cantidad.png)
 
-![Texto Alternativo](/imagenes/api_cart_guardar_agregar_producto.png)
+![Texto Alternativo](./imagenes/api_cart_guardar_agregar_producto.png)
 
-![Texto Alternativo](/imagenes/api_cart_guardar_porductos.png)
+![Texto Alternativo](./imagenes/api_cart_guardar_porductos.png)
 
 
 
