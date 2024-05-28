@@ -3,7 +3,7 @@ const productModel = require("./models/products.model.js")
 
 class ProductManager {
 
-    async getProduct(queryParams) {
+   /* async getProduct(queryParams) {
         console.log("//3 esto imprime",queryParams)
         //3 esto imprime { limit: '10', page: '2', sort: { price: -1 } }
        
@@ -29,10 +29,24 @@ class ProductManager {
         } catch (err) {
             throw new Error(err.message);
         }
+    }*/
+    async getProduct(queryParams) {
+        const { limit = 10, page = 1, sort = {}, filter = {} } = queryParams;
+        
+        const options = {
+            limit: parseInt(limit, 10),
+            page: parseInt(page, 10),
+            sort: Object.keys(sort).length > 0 ? sort : undefined 
+        };
+    
+        try {
+            const result = await productModel.paginate(filter, options);
+            return result;
+        } catch (err) {
+            throw new Error(err.message);
+        }
     }
-
-
-
+    
 
 
     async addProduct(title, description, price, thumbnail, code, stock, status, category) {
@@ -94,7 +108,22 @@ class ProductManager {
         try {
             const products = await productModel.find();
             //  console.log("Estos son los datos que se cargan:", products);
-            return products;
+            return products.map(product => ({
+                title: product.title,
+                price: product.price,
+                description:product.description,
+                thumbnail:product.thumbnail,
+                code:product.code,
+                stock:product.stock,
+                category:product.category,
+                status:product.status,
+                id:product._id
+
+
+
+
+            }));
+
         } catch (error) {
             throw new Error("Error al cargar los productos: " + error.message);
         }

@@ -12,9 +12,57 @@ class CartController {
         this.firstId++;
         return this.firstId;
     }
+    async createCart(req, res) {
+        try {
+            const productos = req.body.productos;
+    console.log("//1 createCart () esto trae el re.body", productos)
+            // Validar que productos no esté vacío y sea un array
+            if (!productos || !Array.isArray(productos) || productos.length === 0) {
+                return res.status(400).json({ error: "Debe proporcionar una lista de productos válida." });
+            }
+    
+            // Inicializar el nuevo carrito
+            const newCart = { productos: [] };
+    
+            // Verificar y procesar cada producto
+            for (const producto of productos) {
+                if (!producto.pid) {
+                    return res.status(400).json({ error: "Cada producto debe tener un pid." });
+                }
+    
+                const productExists = await ProductModel.findById(producto.pid);
+                if (!productExists) {
+                    return res.status(404).json({ error: `El producto con id ${producto.pid} no existe.` });
+                }
+    
+                const quantity = producto.quantity ? producto.quantity : 1;
+    
+                // Buscar si el producto ya está en el carrito
+                const existingProductIndex = newCart.productos.findIndex(p => p.pid.equals(producto.pid));
+                if (existingProductIndex !== -1) {
+                    // Si el producto ya está en el carrito, sumar la cantidad
+                    newCart.productos[existingProductIndex].quantity += quantity;
+                } else {
+                    // Si el producto no está en el carrito, añadirlo
+                    newCart.productos.push({
+                        pid: producto.pid,
+                        quantity: quantity
+                    });
+                }
+            }
+    
+            // Guardar el nuevo carrito en la base de datos
+            const cart = await CartModel.create(newCart);
+            console.log("Carrito guardado en la base de datos:", cart);
+    
+            res.status(200).json({ message: "Carrito creado exitosamente.", cart });
+        } catch (error) {
+            res.status(500).json({ error: "Error al crear el carrito.", message: error.message });
+        }
+    }
+    
 
-
-    createCart(req, res) {
+   /* createCart(req, res) {
         try {
             const newCart = {
                 id: this.newID(),
@@ -48,7 +96,7 @@ class CartController {
         } catch (error) {
             res.status(500).json({ error: "Error al agregar el producto.", message: error.message });
         }
-    }
+    }*/
 
 
     getCartProducts(req, res) {
@@ -99,7 +147,8 @@ class CartController {
         }
     }
 
-
+   
+    
 
 
 

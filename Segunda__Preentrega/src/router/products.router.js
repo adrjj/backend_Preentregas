@@ -18,31 +18,28 @@ router.post('/', async (req, res) => {
         res.status(500).json({ error: "Error al agregar el producto.", message: error.message });
     }
 });
-
 router.get('/', async (req, res) => {
     try {
         let sortQuery = {};
 
-        // Verifica si se ha especificado un parámetro sort y configura la ordenación en consecuencia
         if (req.query.sort === 'price') {
-            sortQuery = { price: 1 }; // Ordena por precio de menor a mayor
+            sortQuery = { price: 1 };
         } else if (req.query.sort === '-price') {
-            sortQuery = { price: -1 }; // Ordena por precio de mayor a menor
+            sortQuery = { price: -1 };
         }
-        
-     
-        const { sort, ...query } = req.query;
-        console.log(" 5//req.query",  req.query);
-        // 5// Query Params: { limit: '10', page: '2', sort: '-price' }
-        // Llama a getProduct() con la consulta y la ordenación adecuada
-        const result = await manager.getProduct({ ...query, sort: sortQuery });
-        console.log(" 6// Query Params:", { ...query, sort: sortQuery });
-       // 6// Query Params: { limit: '10', page: '2', sort: { price: -1 } }
-        console.log("//2 esto imprime", query  ,"y esto sortQuery",sortQuery)
-       //2 esto imprime { limit: '10', page: '2' } y esto sortQuery { price: -1 }
 
-       
+        const { sort, category, ...query } = req.query;
+        let filterQuery = {};
+        if (category) {
+            filterQuery.category = category;
+        }
 
+        const result = await manager.getProduct({ 
+            limit: req.query.limit, 
+            page: req.query.page, 
+            sort: sortQuery, 
+            filter: filterQuery 
+        });
         const { docs, totalPages, hasNextPage, hasPrevPage, nextPage, prevPage, page } = result;
 
         res.json({
@@ -54,22 +51,27 @@ router.get('/', async (req, res) => {
             page,
             hasPrevPage,
             hasNextPage,
-            prevLink: hasPrevPage ? `?limit=${req.query.limit || 10}&page=${prevPage}&sort=${req.query.sort || ''}` : null,
-            nextLink: hasNextPage ? `?limit=${req.query.limit || 10}&page=${nextPage}&sort=${req.query.sort || ''}` : null
-
+            prevLink: hasPrevPage ? `?limit=${req.query.limit || 10}&page=${prevPage}&sort=${req.query.sort || ''}&category=${req.query.category || ''}` : null,
+            nextLink: hasNextPage ? `?limit=${req.query.limit || 10}&page=${nextPage}&sort=${req.query.sort || ''}&category=${req.query.category || ''}` : null
         });
     } catch (error) {
         res.status(500).json({ error: "Error al recuperar productos.", message: error.message });
     }
-    /* try {
-
-        const productos = await manager.loadProducts();
-        res.status(200).json(productos);
-       
-    } catch (error) {
-        res.status(500).json({ error: "Error al recuperar productos.", message: error.message });
-    }*/
 });
+
+
+
+
+
+
+/* try {
+
+    const productos = await manager.loadProducts();
+    res.status(200).json(productos);
+   
+} catch (error) {
+    res.status(500).json({ error: "Error al recuperar productos.", message: error.message });
+}*/
 
 router.get('/:id', async (req, res) => {
     try {

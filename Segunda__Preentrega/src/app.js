@@ -24,7 +24,15 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Handlebars setup
-const hbs = exphbs.create();
+
+const hbs = exphbs.create({
+    helpers: {
+        json: function(context) {
+            return JSON.stringify(context, null, 2);
+        }
+    },
+  
+});
 app.engine("handlebars", hbs.engine);
 app.set('views', path.join(__dirname, './public/views'));
 console.log("esta es la ubicaccion", __dirname)

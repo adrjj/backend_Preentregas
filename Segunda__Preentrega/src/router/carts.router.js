@@ -11,11 +11,11 @@ router.get('/:cid', cartManager.getCartProducts.bind(cartManager));
 //vacia el carrito
 router.delete('/:cid', cartManager.emptyCart.bind(cartManager));
 //eleminar el carrito
-router.delete('/:cid',cartManager.deleteCart.bind(cartManager))
+//router.delete('/:cid',cartManager.deleteCart.bind(cartManager))
 //elimina el porducto del carrito selecionado
 router.delete('/:cid/products/:pid', cartManager.deleteProduct.bind(cartManager));
 //agrega cantidad al producto ya existente
-router.put('/:cid/product/:pid', cartManager.addProductToCart.bind(cartManager));
+router.put('/:cid/products/:pid', cartManager.addProductToCart.bind(cartManager));
 // agrega un porducto al carrito que ya existe
 router.put('/:cid', cartManager.modifyCart.bind(cartManager));
 

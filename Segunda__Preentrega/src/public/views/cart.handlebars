@@ -1,0 +1,22 @@
+<h1>Productos del carrito</h1>
+
+
+
+
+<ul class="contTotalCard">
+    {{#each productos}}
+    <li>
+        <article class="contCard">
+            <h2>{{this.title}}</h2>
+            <img src="{{this.thumbnail}}" alt="{{this.pid.title}}">
+            <p>{{this.description}}</p>
+            <h3>${{this.price}}</h3>
+            <p>Cantidad: {{this.quantity}}</p>
+            <button class="BotonAgregar" data-product-id="{{this.pid._id}}" class="boton" type="submit">Eliminar Producto</button>
+        </article>
+    </li>
+    {{/each}}
+</ul>
+
+ <!-- <h2>Debug:</h2>
+<pre>{{{json productos}}}</pre> Muestra los productos en formato JSON para depuración -->

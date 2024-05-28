@@ -106,7 +106,7 @@ document.getElementById('deleteProductBtn').addEventListener('click', async (eve
     console.log("id para eleiminar", productId)
 
     // Emitir evento al servidor Socket.IO después de eliminar el producto
-    //socket.emit('productDeleted', productId);
+    socket.emit('productDeleted', productId);
 
     console.log("id para eleiminar", productId)
 

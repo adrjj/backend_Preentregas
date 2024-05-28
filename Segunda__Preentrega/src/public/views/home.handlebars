@@ -34,7 +34,7 @@ function addProductToList(productos) {
 
     // Función para cargar la lista de productos cuando la página se carga inicialmente
     function loadInitialProductList() {
-        fetch('/api/products') // Hacer una solicitud HTTP GET al servidor para obtener los productos
+        fetch('/products') // Hacer una solicitud HTTP GET al servidor para obtener los productos
             .then(response => response.json())
             .then(productos => {
                 productos.forEach(product => {
