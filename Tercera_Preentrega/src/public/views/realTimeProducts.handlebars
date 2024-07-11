@@ -1,0 +1,46 @@
+<h1>Lista de Productos en Tiempo Real</h1>
+
+
+
+
+    <a href="/api/sessions/profile">Cerrar Sesión</a>
+
+<div class="contTotal">
+
+
+
+    <div class="contListhome">
+         <h3>Lista de Productos home</h3>
+        <ul class="list" id="productList">
+           
+            <!-- Los productos se agregarán dinámicamente aquí -->
+        </ul>
+    </div>
+
+    <div class="contFormularioTotal">
+        <div>
+            <h3>Agregar un producto a la lista</h3>
+            <form class="formulairioIngreso" id="productForm">
+
+                <input type="text" name="title" id="title" placeholder="Título" required>
+                <input type="text" name="description" id="description" placeholder="Descripción" required>
+                <input type="number" name="price" id="price" placeholder="Precio" required>
+                <input type="text" name="thumbnail" id="thumbnail" placeholder="URL de la imagen" required>
+                <input type="text" name="code" id="code" placeholder="Código" required>
+                <input type="number" name="stock" id="stock" placeholder="Stock" required>
+                <input type="text" name="category" id="category" placeholder="Categoría" required>
+                <button class="boton" type="submit">Agregar Producto</button>
+
+            </form>
+        </div>
+        <div class="contEliminar">
+            <h3>Eliminar un producto de la lista</h3>
+            <form class="deleteForm" id="deleteForm">
+                <input type="text" name="productId" id="productId" placeholder="ID del Producto a Eliminar" required>
+                <button class="boton red" type="button" id="deleteProductBtn">Eliminar Producto</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="../js/logicarRealTimeProducts.js"></script>

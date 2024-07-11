@@ -1,0 +1,49 @@
+<h1>Productos</h1>
+<div class="contTotalPage">
+{{#if welcomeMessage}}
+    <!-- Si hay un mensaje de bienvenida, el usuario está autenticado, mostrar el enlace de cierre de sesión -->
+    <p>{{{ welcomeMessage }}}</p>
+    <a href="/api/sessions/profile">Perfil</a>
+    <a href="/api/carts">Mi carrito</a>
+{{else}}
+    <!-- Si no hay mensaje de bienvenida, el usuario no está autenticado, mostrar el enlace de inicio de sesión -->
+    <a href="/api/sessions/login">Iniciar Sesión</a>
+      <a href="/api/sessions/profile">Perfil</a>
+    <a href="/api/carts">Mi carrito</a>
+{{/if}}
+
+{{#if productos.docs.length}}
+
+    <div class="contPage">
+        <a href="{{productos.prevLink}}" class="{{#unless productos.hasPrevPage}}disabled{{/unless}}">Anterior</a>
+        <a href="{{productos.nextLink}}" class="{{#unless productos.hasNextPage}}disabled{{/unless}}">Siguiente</a>
+
+        {{else}}
+        <p>No products available.</p>
+        {{/if}}
+    </div>
+</div>
+<ul class="contTotalCard">
+    {{#each productos.docs}}
+    <article class="contCard">
+        <h2>{{this.title}}</h2>
+        <img src="{{this.thumbnail}}" alt="{{this.title}}">
+        <p>{{this.description}}</p>
+        <h3>${{this.price}}</h3>
+        <button class="BotonAgregar" data-product-id="{{this._id}}" class="boton" type="submit">Agregar
+            Producto</button>
+    </article>
+    {{/each}}
+</ul>
+
+
+
+
+
+<!--<h2>Debug:</h2>-->
+<!-- <pre>{{{json productos}}}</pre>  Muestra los productos en formato JSON para depuración -->
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="../js/logicaProducts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>

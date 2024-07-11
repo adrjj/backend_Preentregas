@@ -1,0 +1,162 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+h1{
+    color: rgb(104, 28, 148);
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    padding: 2rem;
+}
+ul{
+    margin-top: 16px;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  
+}
+.list li{
+    border: 1px solid rgb(213, 209, 221);
+    padding: 0.3rem;
+    border-radius: 0.2rem;
+    list-style-type: none;
+}
+.contTotal{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+    padding-bottom: 3rem;
+}
+.formulairioIngreso{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    
+}
+.formulairioIngreso input{
+    border: 1px solid rgb(213, 209, 221);
+    border-radius: 0.2rem;
+    padding: 0.3rem;
+    outline: none;
+}
+.deleteForm input{
+    border: 1px solid rgb(213, 209, 221);
+    border-radius: 0.2rem;
+    padding: 0.3rem;
+    outline: none;
+}
+input:focus{
+    border: 1px solid rgb(16, 209, 113);
+}
+
+.boton{
+background-color: rgb(16, 209, 113);
+padding: 0.3rem;
+border-radius: 0.3rem;
+border-color: rgba(255, 0, 0, 0);
+font-size: 1rem;
+font-weight: 800;
+color: rgb(244, 255, 255);
+text-shadow: 2px 2px 5px black;
+
+}
+.red{
+    background-color: rgb(255, 83, 83);
+}
+.contEliminar{
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    
+}
+
+.contListhome{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+/*------------Chat------------------*/
+.contChat{
+    display: flex;
+    flex-direction: column;
+ 
+    align-items: center;
+    gap: 2rem;
+}
+.ContEnviar{
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.inputEnviar{
+    height: 3rem;
+    width: 25rem;
+    border: 1px solid rgb(213, 209, 221);
+    border-radius: 0.2rem;
+    padding: 0.3rem;
+    outline: none;
+}
+.inputEnviar:focus{
+    border: 1px solid rgb(16, 209, 113);
+}
+
+/*---------------------CARD---------------------------*/
+
+.contCard{
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+border: 1px solid rgb(213, 209, 221);
+width: 300px;
+height: 250px;
+padding: 0.5rem;
+align-items: center;
+}
+.contTotalCard{
+    list-style-type: none; 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    gap: 2rem;
+    padding: 2rem;
+
+
+}
+
+
+/*------------------products paginate------------------*/
+.contTotalPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+.contPage{
+    display: flex;
+    gap: 2rem;
+
+
+}
+.contPage a {
+    text-decoration: none;
+}
+.disabled {
+    color: grey;
+    pointer-events: none; /* Desactiva los clics en el enlace */
+}

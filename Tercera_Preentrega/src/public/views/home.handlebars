@@ -1,0 +1,96 @@
+<h1>Lista de Productos</h1>
+
+<div>
+  <button id="nextPage" disabled>Anterior</button>
+  <button id="prevPage" disabled>Siguiente</button>
+</div>
+<div class="contListhome">
+  <ul class="list" id="productList">
+    <!-- Los productos se agregarán dinámicamente aquí -->
+  </ul>
+</div>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+
+  // Función para agregar un producto a la lista de productos
+  function addProductToList(producto) {
+    const productList = document.getElementById('productList');
+    const listItem = document.createElement('li');
+    listItem.textContent = `ID: ${producto._id} -- Nombre: ${producto.title}`;
+    productList.appendChild(listItem);
+  }
+
+  // Función para cargar la lista de productos desde una URL
+  function loadProductList(url) {
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log('Respuesta recibida:', data);
+        const productos = data.payload; // Accede a la propiedad 'payload' que contiene los productos
+        const prevLink = data.prevLink ? `/api/products${data.prevLink}` : null;
+        const nextLink = data.nextLink ? `/api/products${data.nextLink}` : null;
+
+        // Limpia la lista de productos antes de agregar los nuevos
+        const productList = document.getElementById('productList');
+        productList.innerHTML = '';
+
+        productos.forEach(producto => {
+          addProductToList(producto);
+        });
+
+        // Actualiza los enlaces de paginación
+        const prevButton = document.getElementById('prevPage');
+        const nextButton = document.getElementById('nextPage');
+
+        if (prevLink) {
+          prevButton.disabled = false;
+          prevButton.onclick = () => loadProductList(prevLink);
+        } else {
+          prevButton.disabled = true;
+        }
+
+        if (nextLink) {
+          nextButton.disabled = false;
+          nextButton.onclick = () => loadProductList(nextLink);
+        } else {
+          nextButton.disabled = true;
+        }
+      })
+      .catch(error => {
+        console.error('Error al obtener los productos:', error);
+      });
+  }
+
+  // Función para cargar la última página de productos inicialmente
+  function loadLastPage() {
+    fetch('/api/products')
+      .then(response => response.json())
+      .then(data => {
+        const totalPages = data.totalPages;
+        const limit = data.limit;
+        const sort = data.sort || '';
+        const category = data.category || '';
+        const lastPageUrl = `/api/products?limit=${limit}&page=${totalPages}&sort=${sort}&category=${category}`;
+        loadProductList(lastPageUrl);
+      })
+      .catch(error => {
+        console.error('Error al obtener el total de páginas:', error);
+      });
+  }
+
+  // Escuchar el evento 'productAdded' y agregar el producto a la lista
+  socket.on('productos', (producto) => {
+    console.log('Nuevo producto agregado:', producto);
+    addProductToList(producto);
+  });
+
+  // Cargar la última página de productos cuando la página se carga inicialmente
+  document.addEventListener('DOMContentLoaded', () => {
+    loadLastPage();
+
+    // Aquí podrías agregar más lógica si necesitas hacer algo más al cargar la página
+  });
+</script>

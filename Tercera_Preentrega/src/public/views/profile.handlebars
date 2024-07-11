@@ -1,0 +1,20 @@
+<h1>Perfil de Usuario</h1>
+
+<ul class="contTotalCard">
+
+    <article class="contCard">
+        <h2>{{user.first_name}}</h2>
+
+        <h3>{{user.last_name}}</h3>
+        <p>{{user.email}}</p>
+        <form action="/api/sessions/logout" method="POST">
+            <button class="boton" type="submit">Cerrar Session</button>
+        </form>
+    <a href="/api/carts"> <button>Mi carritto</button></a>
+    </article>
+
+</ul>
+
+
+<!--<h2>Debug:</h2>-->
+<pre>{{{json user}}}</pre> Muestra los productos en formato JSON para depuración

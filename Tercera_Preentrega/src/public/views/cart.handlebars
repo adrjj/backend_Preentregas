@@ -1,0 +1,27 @@
+<h1>Productos del carrito</h1>
+
+
+<a href="/products">Productos</a>
+
+<a href="/api/sessions/profile">Perfil</a>
+
+<ul class="contTotalCard">
+
+    {{#each products}}
+     
+    <li>
+        <article class="contCard">
+            <h2>{{title}}</h2> <!-- Cambiado de this.title a this.pid.title -->
+            <img src="{{thumbnail}}" alt="{{title}}"> <!-- Cambiado de this.thumbnail a this.pid.thumbnail -->
+            <p>{{description}}</p> <!-- Cambiado de this.description a this.pid.description -->
+            <h3>${{price}}</h3> <!-- Cambiado de this.price a this.pid.price -->
+            <p>Cantidad: {{quantity}}</p>
+            <button class="BotonAgregar" data-product-id="{{_id}}" class="boton" type="submit">Eliminar Producto</button>
+        </article>
+    </li>
+    {{/each}}
+</ul>
+
+
+ <h2>Debug:</h2>
+<pre>{{{json products}}}</pre>   

@@ -1,0 +1,22 @@
+<h1>Registro</h1>
+<div class="contTotal">
+    <div class="contFormularioTotal">
+        <div>
+            <h3>Complete los datos para el registro</h3>
+            <form action="/api/sessions/register" method="POST" class="formulairioIngreso" id="productForm">
+                <input type="text" name="first_name" placeholder="Nombre" required>
+                <input type="text" name="last_name" placeholder="Apellido" required>
+                <input type="email" name="email" placeholder="email" required>
+                <input type="text" name="password" placeholder="Contraseña" required>
+        
+                
+                <button class="boton" type="submit">Registrar</button>
+            </form>
+
+            <a href="login">Iniciar Sesion</a>
+            <div>
+                <a href="/api/sessions/github"> <button>Entrar con github</button> </a>
+            </div>
+        </div>
+    </div>
+</div>
