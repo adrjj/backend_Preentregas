@@ -25,7 +25,7 @@ router.get("/login", isNotAuthenticated, (req, res) => {
 
 router.get("/profile", isAuthenticated, (req, res) => {
   res.render("profile", { user: req.session.user }); // Renderiza la vista de registro
-  console.log("2//", req.session.user)
+  console.log("2// session.router", req.session.user)
 });
 
 
@@ -102,8 +102,8 @@ router.post("/login", passport.authenticate("login", { failureRedirect: "faillog
       first_name: req.user.first_name,
       last_name: req.user.last_name,
       email: req.user.email,   
-      isAdmin:req.user.isAdmin,
-      username: req.user.username 
+      role:req.user.role,
+      
     }
     console.log(req.session.user)
   

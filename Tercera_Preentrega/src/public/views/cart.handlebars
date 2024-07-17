@@ -5,6 +5,8 @@
 
 <a href="/api/sessions/profile">Perfil</a>
 
+<a href="/api/carts/:cid/purchase">Comprar Carrito</a>
+
 <ul class="contTotalCard">
 
     {{#each products}}
@@ -16,7 +18,7 @@
             <p>{{description}}</p> <!-- Cambiado de this.description a this.pid.description -->
             <h3>${{price}}</h3> <!-- Cambiado de this.price a this.pid.price -->
             <p>Cantidad: {{quantity}}</p>
-            <button class="BotonAgregar" data-product-id="{{_id}}" class="boton" type="submit">Eliminar Producto</button>
+            <button class="BotonEliminar" data-product-id="{{pid}}"  data-user-id="{{../userId}}" class="boton" type="submit">Eliminar Producto</button>
         </article>
     </li>
     {{/each}}
@@ -25,3 +27,5 @@
 
  <h2>Debug:</h2>
 <pre>{{{json products}}}</pre>   
+
+<script src="../js/logicaProducts.js"></script>

@@ -1,0 +1,16 @@
+<h1>Gracias por tu compra</h1>
+
+<div>
+   
+    <h2>Detalles del Ticket</h2>
+    <p><strong>Código:</strong> {{ticket.code}}</p>
+    <p><strong>Importe Total:</strong> ${{ticket.amount}}</p>
+    <p><strong>Comprador:</strong> {{ticket.purchaser}}</p>
+    <p><strong>Fecha y Hora de Compra:</strong> {{ticket.purchase_datetime}}</p>
+</div>
+
+<a href="/products">Volver a Productos</a>
+<a href="/api/carts">Volver al Carrito</a>
+
+<h2>Debug:</h2>
+<pre>{{{json ticket}}}</pre>

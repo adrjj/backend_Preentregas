@@ -37,19 +37,12 @@ class CartDAO {
     }
 
     async emptyCart(cid) {
-      
-        const user = await UserModel.findById(cid);
-        if (!user) {
+        const cart = await CartModel.findById(cid);
+        if (!cart) {
             throw new Error("Carrito no encontrado.");
         }
-        user.cart.productos = [];
-        const result = await user.save();
-        console.log("CartDao.emptyCart() - Fin - Result:", result);
-        return result;
-        //  cart.productos = [];
-    //  return  await cart.save();
-  
-        
+        cart.productos = [];
+        return await cart.save();
     }
 
     async modifyCart(cid, productos) {
@@ -72,28 +65,9 @@ class CartDAO {
 
         return await cart.save();
     }
+
     async deleteProduct(cid, pid) {
-        console.log ("dao/delectProduct()",cid,pid)
-        const cart = await UserModel.findById(cid);
-        if (!cart) {
-            throw new Error("Carrito no encontrado.");
-        }
-        console.log ("dao/delectProduct() 2//",cart)
-        if (!cart.cart || !cart.cart.productos) {
-            throw new Error("No se encontraron productos en el carrito.");
-        }
-    
-        const productIndex = cart.cart.productos.findIndex(product => product.pid.equals(pid));
-        if (productIndex === -1) {
-            throw new Error("Producto no encontrado en el carrito.");
-        }
-       // console.log ("dao/delectProduct()",productIndex)
-        cart.cart.productos.splice(productIndex, 1);
-        return await cart.save();
-    }
-    
-  /*  async deleteProduct(cid, pid) {
-        const cart = await UserModel.findById(cid);
+        const cart = await CartModel.findById(cid);
         if (!cart) {
             throw new Error("Carrito no encontrado.");
         }
@@ -105,7 +79,7 @@ class CartDAO {
 
         cart.productos.splice(productIndex, 1);
         return await cart.save();
-    }*/
+    }
 
     async getCartWithProducts(cartId) {
         const cart = await CartModel.findById(cartId).populate('productos.pid').exec();

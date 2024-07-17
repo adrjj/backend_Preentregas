@@ -2,7 +2,7 @@ const ChatModel =require("../models/chat.model.js")
 
 class ChatManager {
     constructor() {
-        
+        // Constructor si necesitas inicializar algo
     }
 
     async saveMessage(messageData) {

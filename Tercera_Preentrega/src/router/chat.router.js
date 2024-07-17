@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const ChatManager = require("../dao/chatManagerdb.js")
+const { user  }=require("../middleware/roles.js")
+const {isAuthenticated}=require("../middleware/authenticated.js")
 
-router.get("/", async (req, res) => {
+
+router.get("/",isAuthenticated,user, async (req, res) => {
   try {
     
 

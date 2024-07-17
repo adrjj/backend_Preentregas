@@ -1,9 +1,5 @@
 const ProductDAO = require("../dao/productDao.js");
-const Repositorie = require("../repositories/productRepository.js")
-
-const ProductRepository = new Repositorie ()
-
-
+const manager = new ProductDAO()
 class ProductController {
     async getProducts(req, res) {
         try {
@@ -28,7 +24,7 @@ class ProductController {
                 sort: Object.keys(sortQuery).length > 0 ? sortQuery : undefined
             };
     
-            const result = await ProductRepository.getProduct(filterQuery, options);
+            const result = await manager.getProduct(filterQuery, options);
     
             if (!result) {
                 throw new Error("No se pudieron obtener los productos.");
@@ -61,7 +57,7 @@ class ProductController {
                 return res.status(400).json({ error: "Todos los campos son obligatorios." });
             }
             const productData = { title, description, price, thumbnail, code, stock, status, category };
-            await ProductRepository.addProduct(productData);
+            await manager.addProduct(productData);
             res.status(201).json({ message: "Producto agregado exitosamente." });
         } catch (error) {
             res.status(500).json({ error: "Error al agregar el producto.", message: error.message });
@@ -71,7 +67,7 @@ class ProductController {
     async getProductById(req, res) {
         try {
             const { id } = req.params;
-            const product = await ProductRepository.getProductById(id);
+            const product = await manager.getProductById(id);
             res.status(200).json(product);
         } catch (error) {
             res.status(500).json({ error: "Error al recuperar el producto.", message: error.message });
@@ -82,7 +78,7 @@ class ProductController {
         try {
             const { id } = req.params;
             const newData = req.body;
-            await ProductRepository.updateProduct(id, newData);
+            await manager.updateProduct(id, newData);
             res.status(200).json({ message: "Producto actualizado exitosamente." });
         } catch (error) {
             res.status(500).json({ error: "Error al actualizar el producto.", message: error.message });
@@ -92,7 +88,7 @@ class ProductController {
     async deleteProduct(req, res) {
         try {
             const { id } = req.params;
-            await ProductRepository.deleteProduct(id);
+            await manager.deleteProduct(id);
             res.status(200).json({ message: "Producto eliminado exitosamente." });
         } catch (error) {
             res.status(500).json({ error: "Error al eliminar el producto.", message: error.message });
@@ -100,11 +96,8 @@ class ProductController {
     }
 
     async loadProducts() {
-        return await ProductRepository.loadProducts();
+        return await manager.loadProducts();
     }
-
-
-    
 }
 
 module.exports = ProductController;

@@ -74,22 +74,6 @@ class ProductDAO {
             throw new Error("Error al cargar los productos: " + error.message);
         }
     }
-
-    async updateStock(productId, quantity) {
-        console.log("updateStock() productId, quantity",productId, quantity)
-        try {
-            const product = await productModel.findById(productId);
-            
-            if (product.stock < quantity) {
-                throw new Error('Stock insuficiente');
-            }
-            product.stock -= quantity;
-            console.log("updateStock()  product.stock, quantity",product.stock , quantity)
-            await product.save();
-        } catch (error) {
-            throw new Error(`Error al actualizar el stock: ${error.message}`);
-        }
-    }
 }
 
-module.exports = new ProductDAO();
+module.exports = ProductDAO;

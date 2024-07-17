@@ -1,0 +1,44 @@
+<h1>Productos listos para la compra</h1>
+
+<a href="/products">Productos</a>
+<a href="/api/sessions/profile">Perfil</a>
+<a href="/api/carts">Volver al carrito</a>
+
+
+<ul class="contTotalCard">
+    {{#each products}}
+    <li>
+        <article class="contCard">
+            <h2>{{title}}</h2>
+            <h3>${{price}}</h3>
+            <p>Cantidad: {{quantity}}</p>
+        
+        </article>
+    </li>
+    {{/each}}
+</ul>
+<div class="contCompra">
+<h2>Total de Productos: {{totalQuantity}}</h2>
+<h2>Total a Pagar: ${{totalPrice}}</h2>
+<form action="/api/carts/:cid/confirmPurchase" method="POST">
+
+    <!-- Contenido del formulario -->
+    <button type="submit">Confirmar Compra</button>
+</form>
+</div>
+<br>
+<br>
+
+<h2>Debug:</h2>
+<pre>{{{json products}}}</pre>
+<pre>{{{userId}}}</pre>
+
+<script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+<script>
+    // Función helper para multiplicar cantidad por precio en la vista
+    Handlebars.registerHelper('multiply', function(quantity, price) {
+        return quantity * price;
+    });
+</script>
+
+
